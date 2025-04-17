@@ -1,0 +1,31 @@
+slideId,imageIds,diagnosis,type,softlabel1,softlabel2,softlabel3,softlabel4,softlabel5,softlabel6,softlabel7,softlabel8
+HAM_0006039,['ISIC_0028092'],nevus,test,in-situ tumor,melanoma,nevus,nevus,in-situ tumor,nevus,nevus,nevus
+HAM_0005016,['ISIC_0027045'],nevus,test,nevus,nevus,nevus,in-situ tumor,nevus,melanoma,nevus,nevus
+HAM_0002908,['ISIC_0034182'],nevus,test,nevus,nevus,melanoma,nevus,nevus,nevus,nevus,nevus
+HAM_0005079,['ISIC_0028420'],nevus,test,nevus,nevus,nevus,nevus,nevus,in-situ tumor,nevus,nevus
+HAM_0000022,['ISIC_0031377'],melanoma,test,melanoma,melanoma,nevus,melanoma,melanoma,melanoma,melanoma,melanoma
+HAM_0003256,['ISIC_0032269'],melanoma,test,melanoma,melanoma,melanoma,melanoma,melanoma,nevus,melanoma,melanoma
+HAM_0000184,['ISIC_0027412'],nevus,val,nevus,nevus,nevus,nevus,melanoma,nevus,in-situ tumor,nevus
+HAM_0001919,['ISIC_0026424'],nevus,val,in-situ tumor,nevus,nevus,nevus,nevus,nevus,melanoma,nevus
+HAM_0006464,['ISIC_0027503'],nevus,val,nevus,nevus,nevus,nevus,nevus,in-situ tumor,nevus,nevus
+HAM_0002793,['ISIC_0029953'],nevus,val,in-situ tumor,nevus,nevus,nevus,nevus,nevus,nevus,nevus
+HAM_0002182,['ISIC_0031972'],melanoma,val,melanoma,melanoma,melanoma,nevus,melanoma,melanoma,melanoma,melanoma
+HAM_0007343,['ISIC_0033946'],melanoma,val,melanoma,melanoma,melanoma,melanoma,melanoma,melanoma,nevus,melanoma
+HAM_0005571,['ISIC_0033648'],nevus,train,nevus,nevus,nevus,melanoma,in-situ tumor,nevus,nevus,nevus
+HAM_0006312,['ISIC_0031337'],nevus,train,nevus,nevus,melanoma,nevus,nevus,nevus,nevus,nevus
+HAM_0004701,['ISIC_0032243'],nevus,train,in-situ tumor,nevus,nevus,nevus,nevus,nevus,nevus,nevus
+HAM_0003078,['ISIC_0026124'],nevus,train,in-situ tumor,nevus,nevus,nevus,nevus,melanoma,nevus,nevus
+HAM_0001961,['ISIC_0031076'],nevus,train,nevus,nevus,nevus,nevus,nevus,nevus,nevus,nevus
+HAM_0004014,['ISIC_0029809'],nevus,train,in-situ tumor,nevus,nevus,nevus,nevus,nevus,melanoma,nevus
+HAM_0000217,['ISIC_0031115'],nevus,train,nevus,nevus,nevus,nevus,in-situ tumor,nevus,nevus,nevus
+HAM_0004156,['ISIC_0025863'],nevus,train,in-situ tumor,nevus,melanoma,nevus,nevus,nevus,nevus,nevus
+HAM_0005153,['ISIC_0030847'],nevus,train,nevus,nevus,nevus,nevus,nevus,nevus,nevus,nevus
+HAM_0003447,['ISIC_0033168'],nevus,train,nevus,nevus,nevus,nevus,nevus,nevus,nevus,nevus
+HAM_0000044,['ISIC_0025152'],nevus,train,in-situ tumor,nevus,nevus,nevus,nevus,nevus,nevus,nevus
+HAM_0003745,['ISIC_0029704'],nevus,train,nevus,nevus,melanoma,nevus,nevus,nevus,nevus,nevus
+HAM_0001214,['ISIC_0025439'],melanoma,train,melanoma,in-situ tumor,melanoma,melanoma,melanoma,melanoma,melanoma,melanoma
+HAM_0006088,['ISIC_0028760'],melanoma,train,melanoma,nevus,melanoma,melanoma,melanoma,in-situ tumor,melanoma,melanoma
+HAM_0006171,['ISIC_0026131'],melanoma,train,melanoma,melanoma,melanoma,melanoma,melanoma,melanoma,melanoma,melanoma
+HAM_0000201,['ISIC_0031408'],melanoma,train,nevus,melanoma,in-situ tumor,melanoma,nevus,melanoma,nevus,melanoma
+HAM_0003172,['ISIC_0026105'],melanoma,train,melanoma,melanoma,melanoma,melanoma,melanoma,melanoma,melanoma,nevus
+HAM_0001647,['ISIC_0033730'],melanoma,train,melanoma,melanoma,melanoma,melanoma,in-situ tumor,melanoma,melanoma,melanoma
