@@ -47,9 +47,6 @@ pip install -r requirements.txt
 
 ## Demo
 
-This projects contains 30 images from the HAM10K dataset, which we split into a train, validation and test dataset for demonstration of our model and training process. The overview of the demo data is in the table [`demo/demo_label_data.csv`](./demo/demo_label_data.csv). Next to the diagnosis of the 
-original dataset, we included random picked diagnosises as softlabel1-softlabel8 to demonstatet also our uncertainty soft label approach.
-
 This project contains 30 images from the HAM10K dataset, which we have split into training, validation, and test sets to demonstrate our model and training process. An overview of the demo data can be found in the table [`demo/demo_label_data.csv`](./demo/demo_label_data.csv). In addition to the original diagnosis from the dataset, we have included randomly selected diagnoses labeled as *softlabel1* through *softlabel8* to demonstrate our soft label approach for handling uncertainty.
 
 ### Jupyter Notebook
@@ -80,7 +77,8 @@ Demo confmatrix:  [[0.0, 1.0, 1.0], [0.0, 0.0, 0.0], [1.0, 1.0, 2.0]]
 ```
 ## Reproduce paper results
 
-In the [`predictions`](./predictions/) directory, the subdirectory [`predictions/all_predictions`](./predictions/all_predictions) contains tables of all model predictions using different label encoding variants (majority vote and soft labels), as well as various preprocessing methods (darker lesion, contrast-enhanced lesion, grayscale image, and normal image). These results correspond to the validation, holdout, and external test sets, as described in the paper and its supplementary materials, and can be used to reproduce all statistical measurements presented. \
+In the [`predictions`](./predictions/) directory, the subdirectory [`predictions/all_predictions`](./predictions/all_predictions) contains tables of all model predictions using different label encoding variants (majority vote and soft labels), as well as various preprocessing methods (darker lesion, contrast-enhanced lesion, grayscale image, and normal image). These results correspond to the validation, holdout, and external test sets, as described in the paper and its supplementary materials, and can be used to reproduce all statistical measurements presented.
+
 The [`predictions/paper`](./predictions/paper/) directory contains predictions from the model weights using the darker lesion preprocessing step. These are intended to reproduce the paper’s visualizations, such as the confusion matrix and ROC curves.
 
 ### Statistic
@@ -106,7 +104,8 @@ python results.py --result_case auroc --input_path predictions/paper
 
 If you want to preform a new training, optimization or evaluation with the pathological panel dataset, you can follow the follwoing instructions. Therefore you need the dataset and the pathological panel table.
 
-In the [`DermaClassifier/utils/config.py`](./DermaClassifier/utils/config.py) file, you can specify the preprocessing step for training your model using the `preprocess` variable in line 11. The `encode_label` variable in line 12 allows you to choose between using majority vote with one-hot encoding or incorporating uncertainty with soft labels for encoding the diagnoses. \
+In the [`DermaClassifier/utils/config.py`](./DermaClassifier/utils/config.py) file, you can specify the preprocessing step for training your model using the `preprocess` variable in line 11. The `encode_label` variable in line 12 allows you to choose between using majority vote with one-hot encoding or incorporating uncertainty with soft labels for encoding the diagnoses.
+
 Additionally, you need to define the name of the pathological panel table using the `patho_panel_tabel` variable in line 15, and specify the directory containing the images, the pathological panel and the data splits using the `data_path` variable in line 16.
 
 ### Training
@@ -125,10 +124,10 @@ python train.py --model efficientnetB2 --epochs 10 --loss ce --seed 42
 
 ### Optimization
 
-To start an optimization run you need to set the attribute `--optimize` with `True` and you can define with `--trials` how many different hyperparameter setups you wanna test. Like for the training run bevor a directory dependent on your preprocess and diagnosis encoding is automatically created. In this directory, the different trials weights are saved and also a table file with all the tested hyperparametes. The tested hyperparameter are also saved to an optuna databse `optuna.db`, where you can find multiple information regarding the hyperparameter search. The optimization should be done for a status shoosen seed, for us it was 42, to prohibit optimization for a random chosen sequence. For example, a optimizaiotn run can be started using the following command: 
+To start an optimization run, you need to set the `--optimize` attribute to `True`, and use the `--trials` argument to define how many different hyperparameter configurations you want to test. Similar to the training run, a directory will be automatically created based on your preprocessing method and diagnosis encoding. Within this directory, the weights for each trial are saved, along with a table file listing all tested hyperparameter configurations. 
 
-To start an optimization run, you need to set the `--optimize` attribute to `True`, and use the `--trials` argument to define how many different hyperparameter configurations you want to test. Similar to the training run, a directory will be automatically created based on your preprocessing method and diagnosis encoding. Within this directory, the weights for each trial are saved, along with a table file listing all tested hyperparameter configurations. \ 
-The tested hyperparameters are also stored in an Optuna database file named `optuna.db`, which contains detailed information about the hyperparameter search process. The optimization should be performed using a fixed seed to ensure reproducibility. In our case, we used the seed `42` to avoid randomness affecting the optimization results. \
+The tested hyperparameters are also stored in an Optuna database file named `optuna.db`, which contains detailed information about the hyperparameter search process. The optimization should be performed using a fixed seed to ensure reproducibility. In our case, we used the seed `42` to avoid randomness affecting the optimization results.
+
 For example, an optimization run can be started using the following command:
 ```
 python train.py --model efficientnetB2 --epochs 10 --loss ce --optimize True --trials 5 --project_name test_opti
@@ -137,11 +136,10 @@ python train.py --model efficientnetB2 --epochs 10 --loss ce --optimize True --t
 ### Testing
 
 Finally, you can evaluate the trained or optimized model.
-To test the performance of the trained model you need to define with the `--pred` attribute if a the evaluation is done for a `single` image of the holdout, external and validation set or for the `batch` of the six images per lesion. With `--saving` you define with `True` that all the statistics and plots are saved into a `results` directory, again automatically created dependent on the preprocessing and diagnosis setup. Actually, since we uploaded only the weights for our best model with the darker lesion preprocess, you need to change the variable `args.model`in line 28 to the directory of your new trained model. For example, a testing run can be started via the following command: 
+To assess the performance of the trained model, use the `--pred` attribute to specify whether the evaluation should be performed on a `single` image from the holdout, external, or validation set, or on a `batch` of six images per lesion. The `--saving` attribute should be set to `True` if you want all statistics and plots to be saved in a `results` directory, which is automatically created based on the selected preprocessing and diagnosis setup. 
 
-Finally, you can evaluate the trained or optimized model.
-To assess the performance of the trained model, use the `--pred` attribute to specify whether the evaluation should be performed on a `single` image from the holdout, external, or validation set, or on a `batch` of six images per lesion. The `--saving` attribute should be set to `True` if you want all statistics and plots to be saved in a `results` directory, which is automatically created based on the selected preprocessing and diagnosis setup. \
-Since only the weights for our best model using the darker lesion preprocessing are provided in this Git, you will need to update the `args.model` variable in line 28 to point to the directory of your newly trained model. \
+Since only the weights for our best model using the darker lesion preprocessing are provided in this Git, you will need to update the `args.model` variable in line 28 to point to the directory of your newly trained model. 
+
 For example, a testing run can be started using the following command:
 ```
 python test.py --pred batch --saving True
