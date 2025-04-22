@@ -51,6 +51,7 @@ def test_patho_panel(arg: argparse.ArgumentParser, models: list, device: str, sa
     # Implement testcase
     test_set_intern = SCP2Dataset(arg, dataset_type="test_intern")
     test_set_extern = SCP2Dataset(arg, dataset_type="test_extern")
+    arg.diagnosis_label = "majority"
     val_set = SCP2Dataset(arg, dataset_type="val")
 
     # Set up dataloader

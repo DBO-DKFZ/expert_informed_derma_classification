@@ -47,7 +47,7 @@ class SCP2Dataset(Dataset):
     
     def set_up_data_table(self):
         """ Load table of the pathological panel and depending the dataset tpye the file with the used slideIds. """
-        data_file = Path(config.split_path, self.dataset_type + ".npy")
+        data_file = Path(config.data_path,config.split_path, self.dataset_type + ".npy")
         data_split = np.load(data_file, allow_pickle=True)
 
         self.table = pd.read_excel(self.args.table_path, header=[0, 1, 2])

@@ -11,13 +11,13 @@ import DermaClassifier.utils.hyperparmeter as hp
 preprocess = "rgb_darker" # normal, rgb_darker, rgb_contrast, rgb_gray
 encode_label = "ohe" # ohe => One-Hot-Encoding | sl => soft-label
 
-patho_panel_tabel = "Labels_Panel-assured_Ground_Truth_Paper.xlsx"
+# Define these variables with the information about where you added the pathological panel information.
+patho_panel_tabel = "Labels_Panel-assured_Ground_Truth_Paper.xlsx"  # Name of the pathological panel.
+data_path = "../../scp_data/"  # Path to data and table information.
+split_path = "./data_split/"  # Path to the train, test and val set with lesoin ids.
 
 ############################################################################################
 
-
-data_path = "../../scp_data/"  # Path to data and table information.
-split_path = "./data_split/"  # Path to the train, test and val set with lesoin ids.
 local_path = "sqlite:////" + str(Path(__file__).resolve().parent.parent.parent / "optuna.db")
 
 mask = np.load("DermaClassifier/utils/mask.npy", allow_pickle=True)

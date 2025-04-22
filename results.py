@@ -27,6 +27,7 @@ def main(result_case: str, input_path: Path, output_path: Path, numbering: str =
             figure.savefig(output_path / 'AUROCDerma.png')
 
         case 'confusion':
+            Path(output_path).mkdir(parents=True, exist_ok=True)
             figure = plot_data(['Dermoscopic classifier (majority votes)'],
                                ['holdout test dataset', 'external test dataset'],
                                [[input_path / 'pred_derma_darker_majority_holdout.csv', input_path / 'pred_derma_darker_majority_extern.csv']],
@@ -43,7 +44,7 @@ def main(result_case: str, input_path: Path, output_path: Path, numbering: str =
                                class_labels=['IM', 'NIM', 'Nevus'],
                                numbering=numbering,
                                scaling=(7, 5.25), func=_plot_confusion)
-
+            
             figure.savefig(output_path / 'ConfusionDermaSoftLabel.pdf')
             figure.savefig(output_path / 'ConfusionDermaSoftLabel.png')
         case _:

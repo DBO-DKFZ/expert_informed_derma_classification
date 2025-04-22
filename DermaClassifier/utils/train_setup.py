@@ -47,8 +47,7 @@ def train(opt: argparse.ArgumentParser, weight_loss: torch.Tensor, trial_idx: in
                        weight_loss=weight_loss, trial_idx=trial_idx)
 
     # Start training
-    test = None
-    training.train(test)
+    training.train()
 
     return training
 

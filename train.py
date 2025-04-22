@@ -53,7 +53,7 @@ if __name__ == "__main__":
     # Define hyperparameter
     parser.add_argument("--model", type=str, default="efficientnetB2", help="Define which architecture.")
     parser.add_argument("--epochs", type=int, default=100)
-    parser.add_argument("--loss", type=str, default="ce", help="[ce, mse, kl]")
+    parser.add_argument("--loss", type=str, default="ce", help="[ce, mse, kl, l1]")
 
     # Configuration
     parser.add_argument("--seed", type=int, default=42)
