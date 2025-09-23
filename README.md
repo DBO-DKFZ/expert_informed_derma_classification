@@ -136,7 +136,10 @@ python train.py --model efficientnetB2 --epochs 10 --loss ce --optimize True --t
 ### Testing
 
 Finally, you can evaluate the trained or optimized model.
-To assess the performance of the trained model, use the `--pred` attribute to specify whether the evaluation should be performed on a `single` image from the holdout, external, or validation set, or on a `batch` of six images per lesion. The `--saving` attribute should be set to `True` if you want all statistics and plots to be saved in a `results` directory, which is automatically created based on the selected preprocessing and diagnosis setup. 
+To assess the performance of the trained model, use the `--pred` attribute to specify whether the evaluation should be performed on a `single` image from the holdout, external, or validation set, or on a `batch` of six images per lesion. 
+* `--pred singel`: Generates a prediction for each dermatoscopic image in the dataset.
+* `--pred batch`: Outputs a prediction for a batch of six images of a patient from the dataset.
+The `--saving` attribute should be set to `True` if you want all statistics and plots to be saved in a `results` directory, which is automatically created based on the selected preprocessing and diagnosis setup. 
 
 Since only the weights for our best model using the darker lesion preprocessing are provided in this Git, you will need to update the `args.model` variable in line 28 to point to the directory of your newly trained model. 
 

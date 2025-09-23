@@ -16,7 +16,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--data_path", type=str, default="../../scp_data/", help="Path to data and table information.")
-    parser.add_argument("--pred", type=str, default="single", help="prediction per image or per patient {single, batch}")
+    parser.add_argument("--pred", type=str, default="single", help="Prediction per image or per patient {single, batch}.\
+                                                                    'single' means that you will receive a prediction for each image in the dataset. \
+                                                                    'batch' means you get one prediction for a batch of six images of a patient in the dataset.")
     parser.add_argument("--saving", type=bool, default=False)
     parser.add_argument("--demo", type=bool, default=False)
 
