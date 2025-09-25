@@ -211,8 +211,8 @@ class Trainer:
                             self.worst.insert(idx, np.abs(vloss.item()))
                             self.worst = self.worst[:config.worst_val_prediction_list_len]
 
-                            show_img = (config.denormalize(image[0]).permute(1, 2, 0).cpu().numpy()*255).astype("int64")
-                            pil_image = np.array(Image.fromarray((config.denormalize(image[0]).permute(1, 2, 0).cpu().numpy()*255).astype("uint8")).resize((250, 250)))
+                            show_img = (config.denormalize(image[0]).permute(1, 2, 0).cpu().numpy() * 255).astype("int64")
+                            pil_image = np.array(Image.fromarray((config.denormalize(image[0]).permute(1, 2, 0).cpu().numpy() * 255).astype("uint8")).resize((250, 250)))
                             pred_label = self.encoding[torch.max(output.data, 1)[1].item()]
                             target_label = self.encoding[torch.max(label, 1)[1].item()]
                             self.worst_info.insert(idx, (show_img, pred_label, target_label, vloss.item()))

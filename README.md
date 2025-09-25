@@ -8,7 +8,7 @@ This code is developed and maintained by [Abels, J](https://github.com/JuAbels)
 
 In the following section, we provide installation instructions, a demonstration using an example dataset, and guidance for training and evaluation with our own data.
 
-The model weights referenced in the paper are located in the [`weights`](./weights) directory. The weights trained using the one-hot encoded majority vote variant are stored in [`weights/ohe/rgb_darker`](./weights/ohe/rgb_darker/), while those trained with soft labels to incorporate uncertainty can be found in [`weights/sl/rgb_darker`](./weights/sl/rgb_darker). All training configurations and setup information are provided in the configuration file [`DermaClassifier/utils/config.py`](./DermaClassifier/utils/config.py), which can be modified as needed. This Git repository includes only the model weights corresponding to the approach described in the paper, which features a preprocessing step that darkens the lesion.
+The model weights referenced in the paper are located in the [`weights`](./weights) directory. The weights trained using the one-hot encoded majority vote variant are stored in [`weights/ohe/rgb_darker`](./weights/ohe/rgb_darker/), while those trained with soft labels to incorporate uncertainty can be found in [`weights/sl/rgb_darker`](./weights/sl/rgb_darker). All training configurations and setup information are provided in the configuration file [`src/DermaClassifier/utils/config.py`](src/DermaClassifier/utils/config.py), which can be modified as needed. This Git repository includes only the model weights corresponding to the approach described in the paper, which features a preprocessing step that darkens the lesion.
 
 ## Pipeline overview
 ![Dermoscopic classifier training](./figures/ensemble_model.png)
@@ -47,12 +47,12 @@ pip install -r requirements.txt
 
 ## Demo
 
-This project contains 30 images from the HAM10K dataset, which we have split into training, validation, and test sets to demonstrate our model and training process. An overview of the demo data can be found in the table [`demo/demo_label_data.csv`](./demo/demo_label_data.csv). In addition to the original diagnosis from the dataset, we have included randomly selected diagnoses labeled as *softlabel1* through *softlabel8* to demonstrate our soft label approach for handling uncertainty.
+This project contains 30 images from the HAM10K dataset, which we have split into training, validation, and test sets to demonstrate our model and training process. An overview of the demo data can be found in the table [`data/demo_label_data.csv`](data/demo_label_data.csv). In addition to the original diagnosis from the dataset, we have included randomly selected diagnoses labeled as *softlabel1* through *softlabel8* to demonstrate our soft label approach for handling uncertainty.
 
 ### Jupyter Notebook
 
 We present our training, optimization, and evaluation process using the demo dataset, as well as the evaluation of the model predictions described in the paper and its supplementary materials, for both the test holdout set and an external dataset—all within a Jupyter notebook.
-To proceed, activate the environment, start Jupyter Notebook, and navigate to the file [`demo/demo.ipynb`](./demo/demo.ipynb) from the Jupyter interface.
+To proceed, activate the environment, start Jupyter Notebook, and navigate to the file [`src/demo.ipynb`](src/demo.ipynb) from the Jupyter interface.
 ```
 # Activate the environment if not activated
 . venv/bin/activate
@@ -65,7 +65,7 @@ jupyter notebook
 
 If you want to test predictions using the demo test set with our model weights, call the corresponding command: 
 ```
-python test.py --demo True
+python src/test.py --demo True
 ```
 The metrics in  the console output will appear as follows:
 ```
@@ -85,7 +85,7 @@ The [`predictions/paper`](./predictions/paper/) directory contains predictions f
 
 To reproduce the statistical results from the paper, run the following script:
 ```
-python results.py --result_case statistic --input_path predictions/all_predictions
+python src/results.py --result_case statistic --input_path predictions/all_predictions
 ```
 
 ### Plots
@@ -93,10 +93,10 @@ python results.py --result_case statistic --input_path predictions/all_predictio
 To reproduce the plots from the paper, run the following commands.
 ```
 # Create plot with confmatrix
-python results.py --result_case confusion --input_path predictions/paper
+python src/results.py --result_case confusion --input_path predictions/paper
 
 # Create plot with ROC curves
-python results.py --result_case auroc --input_path predictions/paper
+python src/results.py --result_case auroc --input_path predictions/paper
 ```
 
 
@@ -104,7 +104,7 @@ python results.py --result_case auroc --input_path predictions/paper
 
 If you want to preform a new training, optimization or evaluation with the pathological panel dataset, you can follow the follwoing instructions. Therefore you need the dataset and the pathological panel table.
 
-In the [`DermaClassifier/utils/config.py`](./DermaClassifier/utils/config.py) file, you can specify the preprocessing step for training your model using the `preprocess` variable in line 11. The `encode_label` variable in line 12 allows you to choose between using majority vote with one-hot encoding or incorporating uncertainty with soft labels for encoding the diagnoses.
+In the [`src/DermaClassifier/utils/config.py`](src/DermaClassifier/utils/config.py) file, you can specify the preprocessing step for training your model using the `preprocess` variable in line 11. The `encode_label` variable in line 12 allows you to choose between using majority vote with one-hot encoding or incorporating uncertainty with soft labels for encoding the diagnoses.
 
 Additionally, you need to define the name of the pathological panel table using the `patho_panel_tabel` variable in line 15, and specify the directory containing the images, the pathological panel and the data splits using the `data_path` variable in line 16.
 
@@ -112,14 +112,14 @@ Additionally, you need to define the name of the pathological panel table using 
 
 ![Dermoscopic classifier training](./figures/training_process.png)
 
-All hyperparameters are defined in [`DermaClassifier/utils/hyperparmeter.py`](./DermaClassifier/utils/hyperparmeter.py) for all preprocessing and diagnosis encoding variants. The following attributes allow you to configure your training in more detail:
-* `model`: By default, this is set to the `efficientnetB2` architecture. If you wish to use a different model structure, you can refer to the `create_model` function in [`DermaClassifier/model/models.py`](./DermaClassifier/model/models.py) to see the other available model architectures.
+All hyperparameters are defined in [`src/DermaClassifier/utils/hyperparmeter.py`](src/DermaClassifier/utils/hyperparmeter.py) for all preprocessing and diagnosis encoding variants. The following attributes allow you to configure your training in more detail:
+* `model`: By default, this is set to the `efficientnetB2` architecture. If you wish to use a different model structure, you can refer to the `create_model` function in [`src/DermaClassifier/model/models.py`](src/DermaClassifier/model/models.py) to see the other available model architectures.
 * `epochs`: Define the epoch number of the training.
 * `loss`: Specify the loss function you want to use for training. You can choose between Cross-Entropy (`ce`, default), Mean Squared Error (`mse`), L1 Loss (`l1`), and KL Divergence (`kl`).
 * `seed`: Define the seed to ensure reproducible randomness. For our ensemble model, we used the following seeds: `0`, `1`, `42` (default), `73`, `123`, `140` and `2024`
 The new trained model weights are saved into the directory `runs`. Depending on you choosen setup the directory and the model weight name is created. For example, a training run can be started using the following command:
 ```
-python train.py --model efficientnetB2 --epochs 10 --loss ce --seed 42
+python src/train.py --model efficientnetB2 --epochs 10 --loss ce --seed 42
 ```
 
 ### Optimization
@@ -130,7 +130,7 @@ The tested hyperparameters are also stored in an Optuna database file named `opt
 
 For example, an optimization run can be started using the following command:
 ```
-python train.py --model efficientnetB2 --epochs 10 --loss ce --optimize True --trials 5 --project_name test_opti
+python src/train.py --model efficientnetB2 --epochs 10 --loss ce --optimize True --trials 5 --project_name test_opti
 ```
 
 ### Testing
@@ -146,7 +146,7 @@ Since only the weights for our best model using the darker lesion preprocessing 
 
 For example, a testing run can be started using the following command:
 ```
-python test.py --pred batch --saving True
+python src/test.py --pred batch --saving True
 ```
 
 ## License

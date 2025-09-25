@@ -8,7 +8,7 @@ def main(result_case: str, input_path: Path, output_path: Path, numbering: str =
 
     match result_case:
         case 'statistic':
-            statistic_calculation(Path(__file__).resolve().parent / input_path)
+            statistic_calculation(Path(__file__).resolve().parent.parent / input_path)
         case 'auroc':
             rows = ['Dermoscopic classifier (majority votes)', 'Dermoscopic classifier (soft-labels)']
             cols = ['holdout test dataset', 'external test dataset']

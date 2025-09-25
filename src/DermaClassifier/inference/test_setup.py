@@ -122,7 +122,7 @@ def test_setup(opt: argparse.ArgumentParser) -> dict:
     arg = saved_model_dict['args']
     
     if opt.demo:
-        arg.images_path = "./demo/data"
+        arg.images_path = "./data/demo"
         arg.pred = "single"
         arg.saving = False
         return test_demo(arg, models, device, saved_model_dict)

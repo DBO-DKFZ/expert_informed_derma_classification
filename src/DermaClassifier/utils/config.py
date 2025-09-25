@@ -20,7 +20,7 @@ split_path = "./data_split/"  # Path to the train, test and val set with lesoin 
 
 local_path = "sqlite:////" + str(Path(__file__).resolve().parent.parent.parent / "optuna.db")
 
-mask = np.load("DermaClassifier/utils/mask.npy", allow_pickle=True)
+mask = np.load("src/DermaClassifier/utils/mask.npy", allow_pickle=True)
 
 gpu = 0  # Which Gpu device to use
 gpu_num = 0 # How many gpus to use.

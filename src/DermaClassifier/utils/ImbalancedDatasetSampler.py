@@ -9,7 +9,6 @@ from torch.utils.data import Dataset, Sampler
 from typing import Union, Callable, Optional
 import random
 import numpy as np
-import DermaClassifier.utils.config as config
 
 
 class ImbalancedDatasetSampler(Sampler):

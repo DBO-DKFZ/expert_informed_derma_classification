@@ -4,8 +4,7 @@ import os
 import cv2
 import copy
 import pandas as pd
-from DermaClassifier.utils import config
-from DermaClassifier.utils import utils
+from DermaClassifier.utils import utils, config
 
 
 class DataSample:

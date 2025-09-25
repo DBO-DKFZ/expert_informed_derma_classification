@@ -47,7 +47,7 @@ class SCP2Dataset(Dataset):
     
     def set_up_data_table(self):
         """ Load table of the pathological panel and depending the dataset tpye the file with the used slideIds. """
-        data_file = Path(config.data_path,config.split_path, self.dataset_type + ".npy")
+        data_file = Path(config.data_path, config.split_path, self.dataset_type + ".npy")
         data_split = np.load(data_file, allow_pickle=True)
 
         self.table = pd.read_excel(self.args.table_path, header=[0, 1, 2])
@@ -60,7 +60,7 @@ class SCP2Dataset(Dataset):
     
     def set_up_demo_table(self):
         """ Load table for the demo. """
-        self.table = pd.read_csv(Path("demo", "demo_label_data.csv"))
+        self.table = pd.read_csv(Path("data", "demo_label_data.csv"))
         self.table = self.table[self.table.type == self.dataset_type]
 
     def load_data(self, table: pd.DataFrame) -> list:
@@ -83,10 +83,10 @@ class SCP2Dataset(Dataset):
                 
                 # Define as datapoint with laben and image
                 data_point = dataset_helper.DataSample(name=image_ids[1:-1],
-                                                        info=sample, 
-                                                        label_mode="majority" if "test" in self.dataset_type else self.args.diagnosis_label,
-                                                        img_path=self.args.images_path,
-                                                        demo=self.demo)
+                                                       info=sample,
+                                                       label_mode="majority" if "test" in self.dataset_type else self.args.diagnosis_label,
+                                                       img_path=self.args.images_path,
+                                                       demo=self.demo)
                 
                 if self.dataset_type == "train" or config.all_data:
                     data.append(data_point)
