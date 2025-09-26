@@ -1,6 +1,6 @@
-# Expert-informed dermatoscopic classifier
+# Expert-informed dermoscopic classifier
 
-This repository provides code to test, train, and tune a multi-classification network for dermatoscopic RGB image analysis, and accompanies the paper:
+This repository provides code to test, train, and tune a multi-classification network for dermoscopic RGB image analysis, and accompanies the paper:
 
 Expert-informed melanoma classification with dermoscopic and histopathologic data: Results and recommendations for practice, Haggenmüller, S.; Heinlein, L.; Abels, J.; et al., Conference/Journal TBD, 2025
 
@@ -156,7 +156,7 @@ python src/train.py --model efficientnetB2 --epochs 10 --loss ce --optimize True
 ### Testing
 
 To assess the performance of the trained model, use the `--pred` attribute to specify whether the evaluation should be performed on a `single` image, or on a `batch` of six images per lesion. 
-* `--pred single`: Generates a prediction for each dermatoscopic image in the dataset.
+* `--pred single`: Generates a prediction for each dermoscopic image in the dataset.
 * `--pred batch`: Outputs a prediction for a batch of six images of a lesion from the dataset.
 
 To save all statistics and plots in a `results` directory, set the `--saving` attribute to `True`. 
